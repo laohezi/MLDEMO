@@ -2,10 +2,8 @@ from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
 import numpy as np
 
-
-
 data = load_iris()
-print("data:",data)
+print("data:", data)
 features = data['data']
 
 feature_names = data['feature_names']
@@ -19,16 +17,16 @@ labels = data['target_names']
 #                 c=c)
 #     plt.show()
 
-plength = features[:,2]
-print("features:",features)
-print("plength:",plength)
+plength = features[:, 2]
+print("features:", features)
+print("plength:", plength)
 is_setosa = (labels == 'setosa')
 max_setosa = plength[is_setosa].max()
 min_non_setosa = plength[~is_setosa].min()
 print('Maximum of setosa:{0}.'.format(max_setosa))
 print('Minimum of setosa:{0}.'.format(min_non_setosa))
 
-if features[:,2] <2: print('Iris Setosa')
+if features[:, 2].any() < 2: print('Iris Setosa')
 
 features = features[~is_setosa]
 labels = labels[~is_setosa]
@@ -36,23 +34,19 @@ labels = labels[~is_setosa]
 virginica = (labels == 'virginica')
 
 best_acc = -1.0
-
+print(features.shape[1])
 for fi in range(features.shape[1]):
-    print("fi:",fi)
+    print("fi:", fi)
     thresh = features[:fi].copy()
     thresh.sort()
     for t in thresh:
-        pred = (features[:,fi]>t)
+        pred = (features[:, fi] > t)
         acc = (pred == virginica).mean()
 
-        if acc >best_acc:
+        if acc > best_acc:
             best_acc = acc
             best_fi = fi
             best_t = t
-
-
-
-
-
-
-
+    print("best_acc:", best_acc)
+    print("best_fi:", best_fi)
+    print("best_t", best_t)
