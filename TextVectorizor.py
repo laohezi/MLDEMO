@@ -6,7 +6,7 @@ content = ["how to format my hard disk","Hard disk format problems"]
 
 X = vectorizer.fit_transform(content)
 print(vectorizer.get_feature_names())#获取特征
-print(X.toarray().transpose())#
+print(X.toarray().transpose())#输出对比结果
 
 
 
